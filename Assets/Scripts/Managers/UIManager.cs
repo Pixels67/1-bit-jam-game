@@ -8,7 +8,7 @@ public class UIManager : MonoBehaviour {
         buildingPanel.SetActive(false);
         ghostBuilding.SetActive(false);
     }
-    
+
     public void ToggleBuildingPanel() {
         buildingPanel.SetActive(!buildingPanel.activeSelf);
     }
@@ -22,7 +22,7 @@ public class UIManager : MonoBehaviour {
     }
 
     public void OnSnowmanButtonClicked() {
-        ControlManager controlManager = FindFirstObjectByType<ControlManager>();
+        var controlManager = FindFirstObjectByType<ControlManager>();
         controlManager.selectionState = ControlManager.SelectionState.Snowman;
         ToggleGhostBuilding();
     }

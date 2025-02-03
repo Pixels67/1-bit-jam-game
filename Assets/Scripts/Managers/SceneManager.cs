@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class SceneManager : MonoBehaviour {
     public static SceneManager I { get; private set; }
-    
+
     private void Awake() {
         if (I == null) {
             I = this;

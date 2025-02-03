@@ -1,3 +1,4 @@
+using Unit;
 using UnityEngine;
 
 [RequireComponent(typeof(BoxCollider2D))]
@@ -8,7 +9,7 @@ public class TurnPoint : MonoBehaviour {
     private void Awake() {
         GetComponent<BoxCollider2D>().isTrigger = true;
     }
-    
+
     private void OnTriggerStay2D(Collider2D other) {
         if (other.GetComponent<Enemy>() == null) return;
         if (Vector2.Distance(other.transform.position, transform.position) > radius) return;

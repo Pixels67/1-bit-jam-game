@@ -1,4 +1,5 @@
 using System.Linq;
+using Building;
 using UnityEngine;
 
 public class ControlManager : MonoBehaviour {
@@ -6,11 +7,11 @@ public class ControlManager : MonoBehaviour {
         None,
         Snowman
     }
-    
+
     [HideInInspector] public SelectionState selectionState = SelectionState.None;
-    
+
     [SerializeField] private GameObject snowman;
-    
+
     private Camera m_camera;
     private UIManager m_uiManager;
 
@@ -21,14 +22,14 @@ public class ControlManager : MonoBehaviour {
 
     private void Update() {
         if (selectionState == SelectionState.Snowman) {
-            Vector3 mousePos = m_camera.ScreenToWorldPoint(Input.mousePosition);
+            var mousePos = m_camera.ScreenToWorldPoint(Input.mousePosition);
             mousePos.z = 0f;
-            Vector3 ghostPos = m_camera.WorldToScreenPoint(SnapToGrid(mousePos, 2));
+            var ghostPos = m_camera.WorldToScreenPoint(SnapToGrid(mousePos, 2));
             m_uiManager.SetGhostBuildingPosition(ghostPos);
         }
-        
+
         if (!Input.GetMouseButtonDown(0)) return;
-        
+
         switch (selectionState) {
             case SelectionState.None:
                 break;
@@ -47,18 +48,18 @@ public class ControlManager : MonoBehaviour {
     }
 
     private void BuildSnowman() {
-        Vector3 mousePos = m_camera.ScreenToWorldPoint(Input.mousePosition);
+        var mousePos = m_camera.ScreenToWorldPoint(Input.mousePosition);
         mousePos.z = 0f;
-        Vector3 snowmanPos = SnapToGrid(mousePos, 2);
-        
-        Snowman[] snowmen = FindObjectsByType<Snowman>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
+        var snowmanPos = SnapToGrid(mousePos, 2);
+
+        var snowmen = FindObjectsByType<Snowman>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
         if (snowmen.Any(otherSnowman => otherSnowman.transform.position == snowmanPos)) return;
-        
-        Castle castle = FindFirstObjectByType<Castle>();
+
+        var castle = FindFirstObjectByType<Castle>();
         if (Vector2.Distance(snowmanPos, castle.transform.position) < 1.5f) return;
-        
+
         Instantiate(snowman, SnapToGrid(mousePos, 2), Quaternion.identity);
-        
+
         selectionState = SelectionState.None;
         m_uiManager.ToggleGhostBuilding();
     }
