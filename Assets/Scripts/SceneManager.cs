@@ -1,8 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneManager : MonoBehaviour
-{
+public class SceneManager : MonoBehaviour {
     public static SceneManager I { get; private set; }
     
     private void Awake() {
