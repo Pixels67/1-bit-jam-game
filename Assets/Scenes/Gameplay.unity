@@ -2175,7 +2175,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SFXObject: {fileID: 2307232858325309307, guid: b6e444dc51a283f4f8ab9631a58c8551, type: 3}
-  mixer: {fileID: 24100000, guid: 454763a963a459f4c8ddbafbc699683b, type: 2}
 --- !u!4 &1405756280
 Transform:
   m_ObjectHideFlags: 0
