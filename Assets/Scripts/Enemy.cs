@@ -22,6 +22,9 @@ public class Enemy : MonoBehaviour, IDamageable {
     private void Update() {
         transform.Translate(speed * Time.deltaTime * m_direction);
         
+        if (CurrentHealth <= 0)
+            Destroy(gameObject);
+        
         Vector2 distance = m_castle.transform.position - transform.position;
         if (distance.magnitude > attackRange) return;
         m_castle.TakeDamage(damagePerSecond);

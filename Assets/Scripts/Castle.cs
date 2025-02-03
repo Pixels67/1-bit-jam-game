@@ -10,7 +10,7 @@ public class Castle : MonoBehaviour, IDamageable {
     }
 
     private void Update() {
-        //Debug.Log(CurrentHealth);
+        Debug.Log(CurrentHealth);
     }
 
     public void TakeDamage(uint damage) {

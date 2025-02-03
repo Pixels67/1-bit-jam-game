@@ -4,7 +4,8 @@
 TagManager:
   serializedVersion: 3
   tags:
-  - Turn Point
+  - ControlManager
+  - Castle
   layers:
   - Default
   - TransparentFX

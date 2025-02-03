@@ -11,7 +11,7 @@ public class TurnPoint : MonoBehaviour {
     
     private void OnTriggerStay2D(Collider2D other) {
         if (other.GetComponent<Enemy>() == null) return;
-        if ((other.transform.position - transform.position).magnitude > radius) return;
+        if (Vector2.Distance(other.transform.position, transform.position) > radius) return;
         other.GetComponent<Enemy>().ChangeDirection(direction);
     }
 }
