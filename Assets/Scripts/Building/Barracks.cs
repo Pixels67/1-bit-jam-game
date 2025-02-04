@@ -3,31 +3,34 @@ using System.Linq;
 using Unit;
 using UnityEngine;
 
-namespace Building {
-    public class Barracks : MonoBehaviour {
-        [SerializeField] private GameObject swordsmanObject;
-        [SerializeField] private float spawnRate;
-        [SerializeField] private uint maxUnitCount;
-        [SerializeField] private Vector3 spawnPositionOffset;
-        
-        private float m_spawnTimer;
-        private List<GameObject> m_swordsmen = new();
+public class Barracks : Building {
+    [SerializeField] private GameObject swordsmanObject;
+    [SerializeField] private float spawnRate;
+    [SerializeField] private uint maxUnitCount;
 
-        private void Awake() {
-            Swordsman.OnSwordsmanDeathEvent += UpdateSwordsmenList;
-        }
+    private float m_spawnTimer;
+    private List<GameObject> m_swordsmen = new();
 
-        private void Update() {
-            m_spawnTimer += Time.deltaTime;
-            
-            if (m_spawnTimer < 1f / spawnRate || m_swordsmen.Count >= maxUnitCount) return;
-            
-            m_spawnTimer = 0f;
-            m_swordsmen.Add(Instantiate(swordsmanObject, transform.position + spawnPositionOffset, transform.rotation));
-        }
-        
-        private void UpdateSwordsmenList() {
-            m_swordsmen = m_swordsmen.Where(swordsman => swordsman != null).ToList();
-        }
+    private void Awake() {
+        Swordsman.OnSwordsmanDeathEvent += UpdateSwordsmenList;
     }
-} // namespace Building
+
+    private void Update() {
+        m_spawnTimer += Time.deltaTime;
+
+        if (m_spawnTimer < 1f / spawnRate || m_swordsmen.Count >= maxUnitCount) return;
+
+        m_spawnTimer = 0f;
+        m_swordsmen.Add(
+            Instantiate(swordsmanObject, transform.position + GetRandomOffset(-2f, 2f), transform.rotation)
+        );
+    }
+
+    private Vector3 GetRandomOffset(float min, float max) {
+        return new Vector3(Random.Range(min, max), Random.Range(min, max), 0f);
+    }
+
+    private void UpdateSwordsmenList() {
+        m_swordsmen = m_swordsmen.Where(swordsman => swordsman != null).ToList();
+    }
+}

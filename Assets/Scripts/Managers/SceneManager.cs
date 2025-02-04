@@ -4,13 +4,10 @@ public class SceneManager : MonoBehaviour {
     public static SceneManager I { get; private set; }
 
     private void Awake() {
-        if (I == null) {
+        if (I == null)
             I = this;
-            DontDestroyOnLoad(this);
-        }
-        else {
+        else
             Destroy(gameObject);
-        }
     }
 
     public void LoadNextScene() {

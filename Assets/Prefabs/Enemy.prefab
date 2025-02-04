@@ -175,7 +175,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8356745ef63ed444fbcf37f0cb9f5042, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 2
-  damagePerSecond: 5
-  speed: 2
   initialDirection: {x: 0, y: 0}
+  unitData: {fileID: 11400000, guid: c1faafa29d1bf435990a2561ac473c49, type: 2}

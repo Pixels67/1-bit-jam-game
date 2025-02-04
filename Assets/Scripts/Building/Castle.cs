@@ -7,10 +7,6 @@ public class Castle : MonoBehaviour, IDamageable {
         CurrentHealth = (int)maxHealth;
     }
 
-    private void Update() {
-        //Debug.Log(CurrentHealth);
-    }
-
     public int CurrentHealth { get; private set; }
 
     public void TakeDamage(uint damage) {
