@@ -11,6 +11,10 @@ namespace Building {
 
         private List<Enemy> m_targets = new();
 
+        private void Awake() {
+            Enemy.OnEnemyDeathEvent += UpdateTargets;
+        }
+
         private void Update() {
             m_fireTimer += Time.deltaTime;
 
@@ -37,8 +41,7 @@ namespace Building {
         private void Fire() {
             Vector2 direction = (m_targets.First().transform.position - transform.position).normalized;
             var angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            Instantiate(snowball, transform.position, Quaternion.Euler(0, 0, angle));
-            UpdateTargets();
+            Instantiate(snowball, transform.position, Quaternion.Euler(0f, 0f, angle));
         }
     }
 } // namespace Building

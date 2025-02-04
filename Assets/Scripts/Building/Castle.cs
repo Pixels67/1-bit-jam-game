@@ -8,7 +8,7 @@ public class Castle : MonoBehaviour, IDamageable {
     }
 
     private void Update() {
-        Debug.Log(CurrentHealth);
+        //Debug.Log(CurrentHealth);
     }
 
     public int CurrentHealth { get; private set; }

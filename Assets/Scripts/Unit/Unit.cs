@@ -1,6 +1,7 @@
 using UnityEngine;
 
 namespace Unit {
+    [RequireComponent(typeof(Rigidbody2D))]
     [RequireComponent(typeof(Collider2D))]
     public class Unit : MonoBehaviour, IDamageable {
         public int CurrentHealth { get; protected set; }

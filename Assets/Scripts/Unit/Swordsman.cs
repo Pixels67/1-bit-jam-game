@@ -5,6 +5,9 @@ using UnityEngine;
 namespace Unit {
     [RequireComponent(typeof(CircleCollider2D))]
     public class Swordsman : Unit {
+        public delegate void OnSwordsmanDeath();
+        public static event OnSwordsmanDeath OnSwordsmanDeathEvent;
+        
         [SerializeField] private float attackRange;
         
         private List<Enemy> m_targets = new();
@@ -14,10 +17,14 @@ namespace Unit {
             base.Awake();
             GetComponent<CircleCollider2D>().isTrigger = true;
             m_range = GetComponent<CircleCollider2D>();
+            Enemy.OnEnemyDeathEvent += UpdateTargets;
         }
 
         protected override void Update() {
             base.Update();
+            
+            if (CurrentHealth <= 0)
+                OnSwordsmanDeathEvent?.Invoke();
             
             if (!m_targets.Any()) {
                 Vector2 displacement = m_range.offset.normalized;
@@ -28,8 +35,10 @@ namespace Unit {
             if (Vector2.Distance(m_targets.First().transform.position, transform.position) > attackRange + 0.1f) {
                 Vector2 displacement = (m_targets.First().transform.position - transform.position).normalized;
                 Move(displacement, Time.deltaTime);
+                return;
             }
-            else if (Vector2.Distance(m_targets.First().transform.position, transform.position) < attackRange - 0.1f) {
+            
+            if (Vector2.Distance(m_targets.First().transform.position, transform.position) < attackRange - 0.1f) {
                 Vector2 displacement = -(m_targets.First().transform.position - transform.position).normalized;
                 Move(displacement, Time.deltaTime);
             }
@@ -38,7 +47,6 @@ namespace Unit {
 
             AttackTimer = 0f;
             m_targets.First().TakeDamage(damagePerSecond);
-            UpdateTargets();
         }
 
         private void UpdateTargets() {
@@ -46,13 +54,11 @@ namespace Unit {
         }
 
         private void OnTriggerEnter2D(Collider2D other) {
-            UpdateTargets();
             if (other.GetComponent<Enemy>() == null) return;
             m_targets.Add(other.GetComponent<Enemy>());
         }
 
         private void OnTriggerExit2D(Collider2D other) {
-            UpdateTargets();
             if (other.GetComponent<Enemy>() == null) return;
             m_targets.Remove(other.GetComponent<Enemy>());
         }

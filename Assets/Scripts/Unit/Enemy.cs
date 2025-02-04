@@ -2,12 +2,17 @@ using UnityEngine;
 
 namespace Unit {
     public class Enemy : Unit {
+        public delegate void OnEnemyDeath();
+        public static event OnEnemyDeath OnEnemyDeathEvent;
+        
         [SerializeField] private Vector2 initialDirection;
         
         private Vector2 m_direction;
 
         protected override void Awake() {
             base.Awake();
+            if (CurrentHealth <= 0)
+                OnEnemyDeathEvent?.Invoke();
             m_direction = initialDirection.normalized;
         }
 
@@ -22,7 +27,6 @@ namespace Unit {
         }
 
         private void OnCollisionEnter2D(Collision2D other) {
-            Debug.Log(other.gameObject.name);
             if (other.collider.GetComponent<Castle>() == null) return;
             other.collider.GetComponent<Castle>().TakeDamage(damagePerSecond);
             Destroy(gameObject);
