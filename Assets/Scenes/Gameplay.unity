@@ -3026,8 +3026,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d452e62f4c184dbfb8d17aaca26c924, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyObject: {fileID: 3375641373390005951, guid: 6a9ff4b09481b45dbbffdad119c3ddf9, type: 3}
+  enemiesToSpawn:
+  - {fileID: 3375641373390005951, guid: 6a9ff4b09481b45dbbffdad119c3ddf9, type: 3}
+  amountsToSpawn: 02000000
   spawnRate: 1.5
+  waitTime: 10
   direction: {x: 0, y: -1}
 --- !u!1 &1471728983
 GameObject:
@@ -3687,7 +3690,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   snow: 20
-  maxHealth: 100
+  maxHealth: 20
 --- !u!61 &1659694114
 BoxCollider2D:
   m_ObjectHideFlags: 0

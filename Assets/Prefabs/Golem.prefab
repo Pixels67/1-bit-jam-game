@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 915263212782085460}
   - component: {fileID: 7617123150919081611}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: Golem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -175,5 +175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8356745ef63ed444fbcf37f0cb9f5042, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialDirection: {x: 0, y: 0}
-  unitData: {fileID: 11400000, guid: c1faafa29d1bf435990a2561ac473c49, type: 2}
+  unitStats:
+    maxHealth: 24
+    damagePerSecond: 4
+    speed: 1

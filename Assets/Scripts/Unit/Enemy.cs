@@ -4,11 +4,8 @@ namespace Unit {
     public class Enemy : Unit {
         public delegate void OnEnemyDeath();
         public Vector2 Direction { get; private set; }
-        
-        [SerializeField] private UnitData unitData;
 
         protected override void Awake() {
-            UnitStats = unitData.enemiesStats["Enemy 1"];
             base.Awake();
             if (CurrentHealth <= 0)
                 OnEnemyDeathEvent?.Invoke();
@@ -21,13 +18,13 @@ namespace Unit {
 
         private void OnCollisionEnter2D(Collision2D other) {
             if (other.collider.GetComponent<Castle>() == null) return;
-            other.collider.GetComponent<Castle>().TakeDamage(UnitStats.damagePerSecond);
+            other.collider.GetComponent<Castle>().TakeDamage(unitStats.damagePerSecond);
             Destroy(gameObject);
         }
 
         private void OnCollisionStay2D(Collision2D other) {
             if (other.collider.GetComponent<Swordsman>() == null || AttackTimer < 1f) return;
-            other.collider.GetComponent<Swordsman>().TakeDamage(UnitStats.damagePerSecond);
+            other.collider.GetComponent<Swordsman>().TakeDamage(unitStats.damagePerSecond);
             AttackTimer = 0f;
         }
 

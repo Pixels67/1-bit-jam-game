@@ -4,12 +4,12 @@ namespace Unit {
     [RequireComponent(typeof(Rigidbody2D))]
     [RequireComponent(typeof(Collider2D))]
     public class Unit : MonoBehaviour, IDamageable {
-        protected UnitStats UnitStats;
+        [SerializeField] protected UnitStats unitStats;
 
         protected float AttackTimer;
 
         protected virtual void Awake() {
-            CurrentHealth = (int) UnitStats.maxHealth;
+            CurrentHealth = (int) unitStats.maxHealth;
         }
 
         protected virtual void Update() {
@@ -25,7 +25,7 @@ namespace Unit {
         }
 
         protected virtual void Move(Vector2 direction, float deltaTime) {
-            transform.Translate(UnitStats.speed * deltaTime * direction);
+            transform.Translate(unitStats.speed * deltaTime * direction);
         }
     }
     

@@ -8,13 +8,11 @@ namespace Unit {
         public delegate void OnSwordsmanDeath();
 
         [SerializeField] private float attackRange;
-        [SerializeField] private UnitData unitData;
         
         private CircleCollider2D m_range;
         private List<Enemy> m_targets = new();
 
         protected override void Awake() {
-            UnitStats = unitData.swordsmanStats;
             base.Awake();
             GetComponent<CircleCollider2D>().isTrigger = true;
             m_range = GetComponent<CircleCollider2D>();
@@ -47,7 +45,7 @@ namespace Unit {
             if (AttackTimer < 1f) return;
 
             AttackTimer = 0f;
-            m_targets.First().TakeDamage(UnitStats.damagePerSecond);
+            m_targets.First().TakeDamage(unitStats.damagePerSecond);
         }
 
         private void OnTriggerEnter2D(Collider2D other) {
@@ -68,7 +66,7 @@ namespace Unit {
 
         protected override void Move(Vector2 displacement, float deltaTime) {
             base.Move(displacement, deltaTime);
-            m_range.offset -= UnitStats.speed * Time.deltaTime * displacement;
+            m_range.offset -= unitStats.speed * Time.deltaTime * displacement;
         }
     }
 } // namespace Unit
