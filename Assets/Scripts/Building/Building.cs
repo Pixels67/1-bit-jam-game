@@ -5,6 +5,7 @@ public class Building : MonoBehaviour {
         None,
         Snowman,
         Barracks,
-        Cannon
+        Cannon,
+        Collector
     }
 }

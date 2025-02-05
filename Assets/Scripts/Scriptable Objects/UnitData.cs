@@ -12,14 +12,13 @@ public class StatsDictionary {
     public List<string> keys;
     public List<Unit.UnitStats> stats;
     
-    public Unit.UnitStats this[string key]
-    {
+    public Unit.UnitStats this[string key] {
         get {
             for (int i = 0; i < keys.Count; i++) {
                 if (keys[i] != key) continue;
                 return stats[i];
             }
-            return stats[0];
+            return null;
         }
         
         set {

@@ -8,10 +8,12 @@ public class UIManager : MonoBehaviour {
     [SerializeField] private GameObject buildingPanel;
     [SerializeField] private GameObject ghostBuilding;
     [SerializeField] private TMP_Text castleHPText;
+    [SerializeField] private TMP_Text snowText;
     [Header("Sprites")]
     [SerializeField] private Sprite snowmanSprite;
     [SerializeField] private Sprite barracksSprite;
     [SerializeField] private Sprite cannonSprite;
+    [SerializeField] private Sprite collectorSprite;
     [Header("Pause Menu")]
     [SerializeField] private GameObject pauseOverlay;
     [SerializeField] private float transitionTime;
@@ -44,6 +46,7 @@ public class UIManager : MonoBehaviour {
 
     private void Update() {
         castleHPText.text = "HP: " + castle.CurrentHealth;
+        snowText.text = "Snow: " + castle.snow;
         
         if (Input.GetKeyDown(pauseKey) && selectionState == Building.BuildingType.None)
             OnPausePressed();
@@ -77,19 +80,7 @@ public class UIManager : MonoBehaviour {
     private void HandleSelection() {
         if (selectionState == Building.BuildingType.None) return;
         
-        switch (selectionState) {
-            case Building.BuildingType.None:
-                break;
-            case Building.BuildingType.Snowman:
-                SetGhostBuildingSprite(Building.BuildingType.Snowman);
-                break;
-            case Building.BuildingType.Barracks:
-                SetGhostBuildingSprite(Building.BuildingType.Barracks);
-                break;
-            case Building.BuildingType.Cannon:
-                SetGhostBuildingSprite(Building.BuildingType.Cannon);
-                break;
-        }
+        SetGhostBuildingSprite(selectionState);
         
         var mousePos = m_camera.ScreenToWorldPoint(Input.mousePosition);
         mousePos.z = 0f;
@@ -129,6 +120,7 @@ public class UIManager : MonoBehaviour {
             Building.BuildingType.Snowman => snowmanSprite,
             Building.BuildingType.Barracks => barracksSprite,
             Building.BuildingType.Cannon => cannonSprite,
+            Building.BuildingType.Collector => collectorSprite,
             _ => m_ghostBuildingImage.sprite
         };
     }
@@ -178,6 +170,11 @@ public class UIManager : MonoBehaviour {
     
     public void OnCannonButtonClicked() {
         selectionState = Building.BuildingType.Cannon;
+        ToggleGhostBuilding();
+    }
+    
+    public void OnCollectorButtonClicked() {
+        selectionState = Building.BuildingType.Collector;
         ToggleGhostBuilding();
     }
 }

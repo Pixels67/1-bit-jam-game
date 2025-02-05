@@ -5,12 +5,23 @@ public class Builder : MonoBehaviour {
     [SerializeField] private GameObject snowman;
     [SerializeField] private GameObject barracks;
     [SerializeField] private GameObject cannon;
+    [SerializeField] private GameObject collector;
+    [SerializeField] private BuildingPrices buildingPrices;
+
+    private Castle m_castle;
+
+    private void Awake() {
+        m_castle = FindFirstObjectByType<Castle>();
+    }
 
     public void Build(Building.BuildingType buildingType, Vector3 position, float rotation = 0f) {
+        if (buildingPrices.prices[buildingType] > m_castle.snow) return;
+        
         var building = buildingType switch {
             Building.BuildingType.Snowman => snowman,
             Building.BuildingType.Barracks => barracks,
             Building.BuildingType.Cannon => cannon,
+            Building.BuildingType.Collector => collector,
             _ => null
         };
 
@@ -22,5 +33,7 @@ public class Builder : MonoBehaviour {
 
         position.z = -1f;
         Instantiate(building, position, Quaternion.Euler(0f, 0f, rotation));
+        
+        m_castle.snow -= buildingPrices.prices[buildingType];
     }
 }
