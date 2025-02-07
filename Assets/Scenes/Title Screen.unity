@@ -214,6 +214,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: SceneManager, Assembly-CSharp
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &653523376
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -940,6 +952,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2031710667862414028, guid: 41d488de4ea3242e482d4996841615ec, type: 3}
+      propertyPath: levels.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2031710667862414028, guid: 41d488de4ea3242e482d4996841615ec, type: 3}
+      propertyPath: levels.Array.data[0].button
+      value: 
+      objectReference: {fileID: 653523373}
+    - target: {fileID: 2031710667862414028, guid: 41d488de4ea3242e482d4996841615ec, type: 3}
+      propertyPath: levels.Array.data[0].SceneID
+      value: Gameplay
+      objectReference: {fileID: 0}
     - target: {fileID: 4616832210601022014, guid: 41d488de4ea3242e482d4996841615ec, type: 3}
       propertyPath: m_Name
       value: SceneManager
