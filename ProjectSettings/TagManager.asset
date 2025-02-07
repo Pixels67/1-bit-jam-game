@@ -5,15 +5,16 @@ TagManager:
   serializedVersion: 3
   tags:
   - ControlManager
-  - Castle
+  - Tilemap
+  - Building
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Units
   - Water
   - UI
-  - 
+  - Tilemap
   - 
   - 
   - 

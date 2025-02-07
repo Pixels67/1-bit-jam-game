@@ -140,3 +140,4 @@ MonoBehaviour:
   speed: 20
   damage: 1
   lifeTime: 10
+  hitSFX: {fileID: 8300000, guid: fa3515fff74ff471885db7ad18bb08e0, type: 3}

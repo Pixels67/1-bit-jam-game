@@ -6,6 +6,7 @@ public class Projectile : MonoBehaviour {
     [SerializeField] private float speed;
     [SerializeField] private uint damage;
     [SerializeField] private float lifeTime;
+    [SerializeField] private AudioClip hitSFX;
 
     private float m_timer;
 
@@ -22,6 +23,7 @@ public class Projectile : MonoBehaviour {
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.GetComponent<Enemy>() == null) return;
         other.GetComponent<Enemy>().TakeDamage(damage);
+        SoundEffectsManager.instance.PlaySFXClip(hitSFX, transform.position);
         Destroy(gameObject);
     }
 }

@@ -4,13 +4,14 @@ using UnityEngine;
 public class Cannon : Building {
     [SerializeField] private float fireRate;
     [SerializeField] private GameObject iceBall;
+    [SerializeField] private LayerMask ignoreLayers;
     
     private float m_fireTimer;
 
     private void Update() {
         m_fireTimer += Time.deltaTime;
 
-        var hit = Physics2D.Raycast(transform.position, transform.right, Mathf.Infinity);
+        var hit = Physics2D.Raycast(transform.position, transform.right, Mathf.Infinity, ~ignoreLayers);
         
         if (!hit) return;
         if (hit.collider.GetComponent<Enemy>() == null) return;

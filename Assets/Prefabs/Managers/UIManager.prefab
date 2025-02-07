@@ -58,6 +58,7 @@ MonoBehaviour:
   pauseKey: 27
   rotateKey: 114
   cancelBuildingKey: 27
+  clickSFX: {fileID: 8300000, guid: 9392890b3dc8147b78d4a3252ed2b4ad, type: 3}
   builder: {fileID: 0}
   castle: {fileID: 0}
   selectionState: 0

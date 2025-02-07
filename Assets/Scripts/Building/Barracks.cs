@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Unit;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Barracks : Building {
     [SerializeField] private GameObject swordsmanObject;

@@ -49,3 +49,4 @@ MonoBehaviour:
   cannon: {fileID: 8385341254024380675, guid: 250fae7db716d49508ef280f145367fc, type: 3}
   collector: {fileID: 1035817747140151605, guid: ed381c0b542614b29b11a03d8cf38ad9, type: 3}
   buildingPrices: {fileID: 11400000, guid: 8f630d7ecffd241ad90341a32bfdd8d8, type: 2}
+  buildSFX: {fileID: 8300000, guid: 26053948eeebb4ab5aa48cb4c06112c2, type: 3}

@@ -22,6 +22,8 @@ public class UIManager : MonoBehaviour {
     [SerializeField] private KeyCode pauseKey;
     [SerializeField] private KeyCode rotateKey;
     [SerializeField] private KeyCode cancelBuildingKey;
+    [Header("SFX")]
+    [SerializeField] private AudioClip clickSFX;
     [Header("References")]
     [SerializeField] private Builder builder;
     [SerializeField] private Castle castle;
@@ -109,10 +111,6 @@ public class UIManager : MonoBehaviour {
         return SnapToGrid(mousePos, 2);
     }
 
-    public void ToggleBuildingPanel() {
-        buildingPanel.SetActive(!buildingPanel.activeSelf);
-    }
-
     private void ToggleGhostBuilding() {
         ghostBuilding.SetActive(!ghostBuilding.activeSelf);
     }
@@ -130,6 +128,7 @@ public class UIManager : MonoBehaviour {
     public void OnPausePressed() {
         StopAllCoroutines();
         StartCoroutine(m_isPaused ? Unpause() : Pause());
+        SoundEffectsManager.instance.PlaySFXClip(clickSFX, transform.position);
     }
     
     private IEnumerator Pause() {
@@ -163,20 +162,24 @@ public class UIManager : MonoBehaviour {
     public void OnSnowmanButtonClicked() {
         selectionState = Building.BuildingType.Snowman;
         ToggleGhostBuilding();
+        SoundEffectsManager.instance.PlaySFXClip(clickSFX, transform.position);
     }
 
     public void OnBarracksButtonClicked() {
         selectionState = Building.BuildingType.Barracks;
         ToggleGhostBuilding();
+        SoundEffectsManager.instance.PlaySFXClip(clickSFX, transform.position);
     }
     
     public void OnCannonButtonClicked() {
         selectionState = Building.BuildingType.Cannon;
         ToggleGhostBuilding();
+        SoundEffectsManager.instance.PlaySFXClip(clickSFX, transform.position);
     }
     
     public void OnCollectorButtonClicked() {
         selectionState = Building.BuildingType.Collector;
         ToggleGhostBuilding();
+        SoundEffectsManager.instance.PlaySFXClip(clickSFX, transform.position);
     }
 }

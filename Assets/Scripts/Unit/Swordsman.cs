@@ -8,6 +8,7 @@ namespace Unit {
         public delegate void OnSwordsmanDeath();
 
         [SerializeField] private float attackRange;
+        [SerializeField] private AudioClip hitSFX;
         
         private CircleCollider2D m_range;
         private List<Enemy> m_targets = new();
@@ -46,6 +47,7 @@ namespace Unit {
 
             AttackTimer = 0f;
             m_targets.First().TakeDamage(unitStats.damagePerSecond);
+            SoundEffectsManager.instance.PlaySFXClip(hitSFX, transform.position);
         }
 
         private void OnTriggerEnter2D(Collider2D other) {

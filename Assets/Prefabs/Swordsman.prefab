@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3493987792120899247}
   - component: {fileID: 3417302116336084975}
   - component: {fileID: 1682230193841649832}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Swordsman
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -213,7 +213,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitStats:
-    maxHealth: 10
-    damagePerSecond: 4
+    maxHealth: 5
+    damagePerSecond: 2
     speed: 2
   attackRange: 1
+  hitSFX: {fileID: 8300000, guid: 75f6cae3ee66d42e2a780aaec3dcc420, type: 3}
