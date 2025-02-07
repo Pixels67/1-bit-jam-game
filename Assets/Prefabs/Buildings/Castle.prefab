@@ -177,4 +177,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   snow: 20
   maxHealth: 20
+  snowGainRate: 0.5
   hitSFX: {fileID: 8300000, guid: dd97061802bfa4df487aba5529929909, type: 3}

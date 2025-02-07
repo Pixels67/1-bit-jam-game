@@ -214,7 +214,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitStats:
     maxHealth: 5
-    damagePerSecond: 2
-    speed: 2
+    damagePerSecond: 4
+    speed: 3
   attackRange: 1
   hitSFX: {fileID: 8300000, guid: 75f6cae3ee66d42e2a780aaec3dcc420, type: 3}
