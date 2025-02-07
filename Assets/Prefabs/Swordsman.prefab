@@ -80,12 +80,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 9a9a2f8167e694e3d9aa79a5da1f78bc, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2ee5585b4a4e247b1ab2a81381769c24, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.5, y: 0.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -130,12 +130,12 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
+    newSize: {x: 0.5, y: 0.5}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.5, y: 0.5}
   m_EdgeRadius: 0
 --- !u!58 &3493987792120899247
 CircleCollider2D:
@@ -172,7 +172,7 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 5
+  m_Radius: 3
 --- !u!50 &3417302116336084975
 Rigidbody2D:
   serializedVersion: 5
@@ -212,5 +212,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ece9b229b26a4f2887cba56fa1f404b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  unitStats:
+    maxHealth: 10
+    damagePerSecond: 4
+    speed: 2
   attackRange: 1
-  unitData: {fileID: 11400000, guid: c1faafa29d1bf435990a2561ac473c49, type: 2}

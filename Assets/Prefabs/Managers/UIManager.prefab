@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2430340526960299839
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1270444574070473910}
+  - component: {fileID: 1975998933456081258}
+  m_Layer: 0
+  m_Name: UIManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1270444574070473910
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2430340526960299839}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1975998933456081258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2430340526960299839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc3a6025abaa3438cb8c1711437fce34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buildingPanel: {fileID: 0}
+  ghostBuilding: {fileID: 0}
+  castleHPText: {fileID: 0}
+  castleHPBar: {fileID: 0}
+  snowText: {fileID: 0}
+  snowmanSprite: {fileID: 21300000, guid: 8150d4968454140a992b573407035406, type: 3}
+  barracksSprite: {fileID: 21300000, guid: d01af7d227af447e6ac5fe3210d85100, type: 3}
+  cannonSprite: {fileID: 21300000, guid: 1ad1829712b8e4bd89ccf226d61d33ea, type: 3}
+  collectorSprite: {fileID: 1510202862, guid: 7ca92e5a56fab48079ad561f2a019310, type: 3}
+  pauseOverlay: {fileID: 0}
+  transitionTime: 0.2
+  pauseKey: 27
+  rotateKey: 114
+  cancelBuildingKey: 27
+  builder: {fileID: 0}
+  castle: {fileID: 0}
+  selectionState: 0

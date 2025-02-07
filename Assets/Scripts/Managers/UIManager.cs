@@ -8,6 +8,7 @@ public class UIManager : MonoBehaviour {
     [SerializeField] private GameObject buildingPanel;
     [SerializeField] private GameObject ghostBuilding;
     [SerializeField] private TMP_Text castleHPText;
+    [SerializeField] private Slider castleHPBar;
     [SerializeField] private TMP_Text snowText;
     [Header("Sprites")]
     [SerializeField] private Sprite snowmanSprite;
@@ -34,10 +35,10 @@ public class UIManager : MonoBehaviour {
     private bool m_isPaused;
 
     private void Awake() {
-        buildingPanel.SetActive(false);
         ghostBuilding.SetActive(false);
         m_ghostBuildingImage = ghostBuilding.GetComponent<Image>();
         m_camera = Camera.main;
+        castleHPBar.maxValue = castle.maxHealth;
         
         pauseOverlay.SetActive(false);
         m_pauseOverlayCanvasGroup = pauseOverlay.GetComponent<CanvasGroup>();
@@ -45,8 +46,9 @@ public class UIManager : MonoBehaviour {
     }
 
     private void Update() {
-        castleHPText.text = "HP: " + castle.CurrentHealth;
-        snowText.text = "Snow: " + castle.snow;
+        castleHPText.text = castle.CurrentHealth.ToString();
+        castleHPBar.value = castle.CurrentHealth;
+        snowText.text = castle.snow.ToString();
         
         if (Input.GetKeyDown(pauseKey) && selectionState == Building.BuildingType.None)
             OnPausePressed();
@@ -125,7 +127,7 @@ public class UIManager : MonoBehaviour {
         };
     }
     
-    private void OnPausePressed() {
+    public void OnPausePressed() {
         StopAllCoroutines();
         StartCoroutine(m_isPaused ? Unpause() : Pause());
     }

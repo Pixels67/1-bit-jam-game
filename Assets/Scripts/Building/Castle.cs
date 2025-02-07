@@ -2,8 +2,7 @@ using UnityEngine;
 
 public class Castle : MonoBehaviour, IDamageable {
     public uint snow;
-    
-    [SerializeField] private uint maxHealth;
+    public uint maxHealth;
 
     private void Awake() {
         CurrentHealth = (int)maxHealth;
