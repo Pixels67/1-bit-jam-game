@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour {
+    public static UIManager I { get; private set; }
+    
     [Header("UI Elements")]
     [SerializeField] private GameObject buildingPanel;
     [SerializeField] private GameObject ghostBuilding;
@@ -15,8 +17,10 @@ public class UIManager : MonoBehaviour {
     [SerializeField] private Sprite barracksSprite;
     [SerializeField] private Sprite cannonSprite;
     [SerializeField] private Sprite collectorSprite;
-    [Header("Pause Menu")]
+    [Header("Menus")]
     [SerializeField] private GameObject pauseOverlay;
+    [SerializeField] private GameObject winOverlay;
+    [SerializeField] private GameObject loseOverlay;
     [SerializeField] private float transitionTime;
     [Header("Input")]
     [SerializeField] private KeyCode pauseKey;
@@ -34,9 +38,18 @@ public class UIManager : MonoBehaviour {
     private Camera m_camera;
     private Image m_ghostBuildingImage;
     private CanvasGroup m_pauseOverlayCanvasGroup;
+    private CanvasGroup m_winOverlayCanvasGroup;
+    private CanvasGroup m_loseOverlayCanvasGroup;
     private bool m_isPaused;
 
     private void Awake() {
+        if (I == null) {
+            I = this;
+        }
+        else {
+            Destroy(this);
+        }
+        
         ghostBuilding.SetActive(false);
         m_ghostBuildingImage = ghostBuilding.GetComponent<Image>();
         m_camera = Camera.main;
@@ -45,6 +58,14 @@ public class UIManager : MonoBehaviour {
         pauseOverlay.SetActive(false);
         m_pauseOverlayCanvasGroup = pauseOverlay.GetComponent<CanvasGroup>();
         m_pauseOverlayCanvasGroup.alpha = 0f;
+        
+        winOverlay.SetActive(false);
+        m_winOverlayCanvasGroup = winOverlay.GetComponent<CanvasGroup>();
+        m_winOverlayCanvasGroup.alpha = 0f;
+        
+        loseOverlay.SetActive(false);
+        m_loseOverlayCanvasGroup = loseOverlay.GetComponent<CanvasGroup>();
+        m_loseOverlayCanvasGroup.alpha = 0f;
     }
 
     private void Update() {
@@ -157,6 +178,30 @@ public class UIManager : MonoBehaviour {
         }
 
         pauseOverlay.SetActive(false);
+    }
+    
+    public IEnumerator ShowWinPanel() {
+        Time.timeScale = 0f;
+        winOverlay.SetActive(true);
+
+        for (var f = 0f; f < transitionTime; f += Time.unscaledDeltaTime) {
+            var value = f / transitionTime;
+
+            m_winOverlayCanvasGroup.alpha = Mathf.Lerp(m_winOverlayCanvasGroup.alpha, 1f, value);
+            yield return null;
+        }
+    }
+    
+    public IEnumerator ShowLosePanel() {
+        Time.timeScale = 0f;
+        loseOverlay.SetActive(true);
+
+        for (var f = 0f; f < transitionTime; f += Time.unscaledDeltaTime) {
+            var value = f / transitionTime;
+
+            m_loseOverlayCanvasGroup.alpha = Mathf.Lerp(m_loseOverlayCanvasGroup.alpha, 1f, value);
+            yield return null;
+        }
     }
 
     public void OnSnowmanButtonClicked() {
