@@ -24,7 +24,13 @@ public class SceneManager : MonoBehaviour
 
     private void Start()
     {
-        //StartLevelSelect();
+        StartLevelSelect();
+    }
+
+    private void Update() //just for a little debugging
+    {
+        if(Input.GetKeyDown(KeyCode.R)) ResetUnlocks();
+        if (Input.GetKeyDown(KeyCode.T)) UnlockNewLevel();
     }
 
     public void LoadNextScene()
@@ -71,6 +77,21 @@ public class SceneManager : MonoBehaviour
         UnityEngine.SceneManagement.SceneManager.LoadScene(nameof(newLevel)); //  currently takes you to the new level, could also take you back to main menu
         SavePlayerPrefs();
     }
+
+    public void UnlockNewLevel() // just for debug
+    {
+        if (unlockedLevels.Count == levels.Length) return;
+        unlockedLevels.Add(levels[unlockedLevels.Count]);
+        UnlockButton(unlockedLevels.Last());
+    }
+
+    public void ResetUnlocks()
+    {
+        PlayerPrefs.SetInt("unlockCount", 1);
+        unlockedLevels = new();
+        LoadPlayerPrefs();
+    }
+
     public void LockButton(LevelSelectButton subject)
     {
         subject.button.GetComponent<Button>().enabled = false;
@@ -98,11 +119,12 @@ public class SceneManager : MonoBehaviour
 
         if (!PlayerPrefs.HasKey("unlockCount")) PlayerPrefs.SetInt("unlockCount", 1);
 
-        unlockedLevels = new List<LevelSelectButton>();
         for (int i = 0; i < PlayerPrefs.GetInt("unlockCount"); i++)
         {
+            if(unlockedLevels.Count > i) break;
             unlockedLevels.Add(levels[i]);
         }
+
         foreach (LevelSelectButton lsb in unlockedLevels)
         {
             UnlockButton(lsb);
