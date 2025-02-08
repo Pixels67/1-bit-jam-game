@@ -17,6 +17,7 @@ public class Builder : MonoBehaviour {
     }
 
     public void Build(Building.BuildingType buildingType, Vector3 position, float rotation = 0f) {
+        if (position.y < -6f) return;
         if (buildingPrices.prices[buildingType] > m_castle.snow) return;
         
         var building = buildingType switch {
