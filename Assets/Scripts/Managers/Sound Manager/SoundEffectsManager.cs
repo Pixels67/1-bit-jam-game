@@ -5,7 +5,13 @@ public class SoundEffectsManager : MonoBehaviour {
     [SerializeField] private GameObject SFXObject;
 
     private void Awake() {
-        if (instance == null) instance = this;
+        if (instance == null) {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else {
+            Destroy(gameObject);
+        }
     }
 
     public void PlaySFXClip(AudioClip audioClip, Vector3 pos, float volume = 1f) {

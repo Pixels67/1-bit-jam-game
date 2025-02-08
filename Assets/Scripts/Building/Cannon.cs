@@ -7,6 +7,11 @@ public class Cannon : Building {
     [SerializeField] private LayerMask ignoreLayers;
     
     private float m_fireTimer;
+    private Animator m_animator;
+
+    private void Awake() {
+        m_animator = GetComponent<Animator>();
+    }
 
     private void Update() {
         m_fireTimer += Time.deltaTime;
@@ -15,10 +20,13 @@ public class Cannon : Building {
         
         if (!hit) return;
         if (hit.collider.GetComponent<Enemy>() == null) return;
+        if (m_fireTimer < 1f / fireRate - 0.5f) return;
+        m_animator.SetBool("IsFiring", true);
         if (m_fireTimer < 1f / fireRate) return;
         
         m_fireTimer = 0f;
         Fire();
+        m_animator.SetBool("IsFiring", false);
     }
 
     private void Fire() {
