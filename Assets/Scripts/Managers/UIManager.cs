@@ -227,4 +227,14 @@ public class UIManager : MonoBehaviour {
         ToggleGhostBuilding();
         SoundEffectsManager.instance.PlaySFXClip(clickSFX, transform.position);
     }
+
+    public void OnNextLevelButtonClicked() {
+        SoundEffectsManager.instance.PlaySFXClip(clickSFX, transform.position);
+        SceneManager.I.OnLevelCompleted();
+    }
+    
+    public void OnRestartLevelButtonClicked() {
+        SoundEffectsManager.instance.PlaySFXClip(clickSFX, transform.position);
+        SceneManager.I.ReloadCurrentScene();
+    }
 }

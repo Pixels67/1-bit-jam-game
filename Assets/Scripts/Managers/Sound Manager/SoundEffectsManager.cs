@@ -14,7 +14,7 @@ public class SoundEffectsManager : MonoBehaviour {
         }
     }
 
-    public void PlaySFXClip(AudioClip audioClip, Vector3 pos, float volume = 1f) {
+    public void PlaySFXClip(AudioClip audioClip, Vector3 pos, float volume = 0.5f) {
         var audioObject = Instantiate(SFXObject, pos, Quaternion.identity);
         audioObject.transform.parent = transform;
 
