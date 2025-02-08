@@ -76,26 +76,22 @@ public class SceneManager : MonoBehaviour
         SavePlayerPrefs();
         StartLevelSelect();
     }
-
     public void QuickPlay()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene(unlockedLevels.Last().SceneID);
     }
-
     public void UnlockNewLevel() // just for debug
     {
         if (unlockedLevels.Count == levels.Length) return;
         unlockedLevels.Add(levels[unlockedLevels.Count]);
         UnlockButton(unlockedLevels.Last());
     }
-
     public void ResetUnlocks()
     {
         PlayerPrefs.SetInt("unlockCount", 1);
         unlockedLevels = defaultUnlocked;
         LoadPlayerPrefs();
     }
-
     public void LockButton(LevelSelectButton subject)
     {
         subject.button.GetComponent<Button>().enabled = false;
@@ -106,9 +102,9 @@ public class SceneManager : MonoBehaviour
         subject.button.GetComponent<Button>().enabled = true;
         subject.button.GetComponent<Image>().enabled = true;
     }
-    public void OnLevelSelected(Scene scene)
+    public void OnLevelSelected(string scene)
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene(nameof(scene));
+        UnityEngine.SceneManagement.SceneManager.LoadScene(scene);
     }
     private void SavePlayerPrefs()
     {
