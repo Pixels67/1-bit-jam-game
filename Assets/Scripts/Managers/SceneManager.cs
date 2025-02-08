@@ -18,7 +18,10 @@ public class SceneManager : MonoBehaviour
     private void Awake()
     {
         if (I == null)
+        {
             I = this;
+            DontDestroyOnLoad(I);
+        }
         else
             Destroy(gameObject);
     }
@@ -31,7 +34,8 @@ public class SceneManager : MonoBehaviour
     private void Update() //just for a little debugging
     {
         if(Input.GetKeyDown(KeyCode.R)) ResetUnlocks();
-        if (Input.GetKeyDown(KeyCode.T)) UnlockNewLevel();
+        if(Input.GetKeyDown(KeyCode.T)) UnlockNewLevel();
+        if(Input.GetKeyDown(KeyCode.Y)) I.OnLevelComplete(UnityEngine.SceneManagement.SceneManager.GetActiveScene());
     }
 
     public void LoadNextScene()
@@ -76,8 +80,9 @@ public class SceneManager : MonoBehaviour
 
         var newLevel = levels[list.IndexOf(scene.name) + 1];
         unlockedLevels.Add(newLevel);
-        UnityEngine.SceneManagement.SceneManager.LoadScene(nameof(newLevel)); //  currently takes you to the new level, could also take you back to main menu
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Title Screen"); //  currently takes you to the main menu
         SavePlayerPrefs();
+        StartLevelSelect();
     }
 
     public void UnlockNewLevel() // just for debug

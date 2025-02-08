@@ -5,12 +5,12 @@ using UnityEngine.UI;
 
 public class AudioMixerScript : MonoBehaviour {
     [SerializeField] private AudioMixer mixer;
-
     [SerializeField] private Slider Master, BGM, SFX;
 
     private void Start() {
         InitializePlayerPrefs();
-        GetPlayerPrefs();
+        SetVolumes();
+        SetSliders();
     }
 
     private void InitializePlayerPrefs() {
@@ -24,16 +24,22 @@ public class AudioMixerScript : MonoBehaviour {
             PlayerPrefs.SetFloat("SFX", 0.8f);
     }
 
-    private void GetPlayerPrefs() {
-        // set sliders to correct values
-        Master.value = PlayerPrefs.GetFloat("MASTER");
-        BGM.value = PlayerPrefs.GetFloat("BGM");
-        SFX.value = PlayerPrefs.GetFloat("SFX");
-
+    private void SetVolumes()
+    {
         // set volumes in audiomixer
-        SetMasterVolume(Master.value);
-        SetBGMVolume(BGM.value);
-        SetSFXVolume(SFX.value);
+        SetMasterVolume(PlayerPrefs.GetFloat("MASTER"));
+        SetBGMVolume(PlayerPrefs.GetFloat("BGM"));
+        SetSFXVolume(PlayerPrefs.GetFloat("SFX"));
+    }
+
+    private void SetSliders() {
+        // set sliders to correct values
+        if (Master!=null)
+            Master.value = PlayerPrefs.GetFloat("MASTER");
+        if (BGM != null)
+            BGM.value = PlayerPrefs.GetFloat("BGM");
+        if (SFX != null)
+            SFX.value = PlayerPrefs.GetFloat("SFX");
     }
 
     public void SetMasterVolume(float value) {
