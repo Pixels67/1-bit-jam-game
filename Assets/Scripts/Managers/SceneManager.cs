@@ -13,6 +13,7 @@ public class SceneManager : MonoBehaviour
     [Header("Level Selection")]
     public LevelSelectButton[] levels;
     public List<LevelSelectButton> unlockedLevels;
+    private List<LevelSelectButton> defaultUnlocked;
 
     private void Awake()
     {
@@ -57,6 +58,7 @@ public class SceneManager : MonoBehaviour
     #region Level Selection
     public void StartLevelSelect()
     {
+        defaultUnlocked = unlockedLevels;
         LoadPlayerPrefs();
     }
     public void OnLevelComplete(Scene scene) // call this with context of the current scene
@@ -88,7 +90,7 @@ public class SceneManager : MonoBehaviour
     public void ResetUnlocks()
     {
         PlayerPrefs.SetInt("unlockCount", 1);
-        unlockedLevels = new();
+        unlockedLevels = defaultUnlocked;
         LoadPlayerPrefs();
     }
 
