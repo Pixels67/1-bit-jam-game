@@ -51,14 +51,6 @@ public class SceneManager : MonoBehaviour
         );
     }
 
-    public void QuitGame()
-    {
-        Application.Quit();
-#if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-#endif
-    }
-
     #region Level Selection
     public void StartLevelSelect()
     {
@@ -83,6 +75,11 @@ public class SceneManager : MonoBehaviour
         UnityEngine.SceneManagement.SceneManager.LoadScene("Title Screen"); //  currently takes you to the main menu
         SavePlayerPrefs();
         StartLevelSelect();
+    }
+
+    public void QuickPlay()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene(unlockedLevels.Last().SceneID);
     }
 
     public void UnlockNewLevel() // just for debug
