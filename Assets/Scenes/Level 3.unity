@@ -6324,7 +6324,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1889492181}
         m_TargetAssemblyTypeName: SceneManager, Assembly-CSharp
         m_MethodName: ReloadCurrentScene
         m_Mode: 1
@@ -6493,7 +6493,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1889492181}
         m_TargetAssemblyTypeName: SceneManager, Assembly-CSharp
         m_MethodName: LoadNextScene
         m_Mode: 1
@@ -7679,7 +7679,7 @@ PrefabInstance:
     - target: {fileID: 1975998933456081258, guid: cf54784b487ad4f61b4769218ad58728, type: 3}
       propertyPath: winOverlay
       value: 
-      objectReference: {fileID: 206488942}
+      objectReference: {fileID: 180244831}
     - target: {fileID: 1975998933456081258, guid: cf54784b487ad4f61b4769218ad58728, type: 3}
       propertyPath: castleHPBar
       value: 
@@ -7687,7 +7687,7 @@ PrefabInstance:
     - target: {fileID: 1975998933456081258, guid: cf54784b487ad4f61b4769218ad58728, type: 3}
       propertyPath: loseOverlay
       value: 
-      objectReference: {fileID: 1490842062}
+      objectReference: {fileID: 1236929113}
     - target: {fileID: 1975998933456081258, guid: cf54784b487ad4f61b4769218ad58728, type: 3}
       propertyPath: castleHPText
       value: 
